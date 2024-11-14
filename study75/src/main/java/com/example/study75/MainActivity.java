@@ -2,6 +2,8 @@
     Остался открытым вопрос:
         как писать файлы во внутреннюю память телефона,
         но не в /data/......
+        РАЗОБРАЛСЯ:
+        Включил соотв. код в writeFile()
  */
 
 package com.example.study75;
@@ -10,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -64,6 +67,36 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        /*
+//            Код для создания поддиректории [MyNewDirectory] директории [Downloads],
+//            и создания в [MyNewDirectory] файла "MyNewFile.txt"
+//            и записью в него строки "Привет!"
+
+        File dirDownLoads = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        Log.d(LOG_TAG, "dirDownLoads.getAbsolutePath() = " + dirDownLoads.getAbsolutePath());
+        File dir = new File(dirDownLoads, "MyNewDirectory");
+        if (!dir.exists()) {
+            dir.mkdirs();
+            Log.d(LOG_TAG, "MyNewDirectory is created!");
+        }
+        Log.d(LOG_TAG, "dir.getAbsolutePath() = " + dir.getAbsolutePath());
+        File file = new File(dir + File.separator + "MyNewFile.txt");
+        try {
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
+            FileOutputStream outputStream = new FileOutputStream(file);   // После чего создаем поток для записи
+            outputStream.write("Привет!".getBytes());                            // и производим непосредственно запись
+            outputStream.close();
+        } catch (IOException e) {
+            Log.d(LOG_TAG, "[IOException] Problems with file!");
+            e.printStackTrace();
+        } finally{
+            Log.d(LOG_TAG, "file.getAbsolutePath() = " + file.getAbsolutePath());
+        }
+         */
     }
 
     void readFile() {
