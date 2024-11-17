@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <!--- Для FOREGROUND методов (BEGIN)-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <!--- Для FOREGROUND методов (END)-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -8,12 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Vinogradov_Studies5">
-        <service
-            android:name=".MyService"
-            android:enabled="true"
-            android:exported="true">
-        </service>
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -23,6 +20,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:foregroundServiceType="dataSync"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="com.example.study94_2.MyService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
+
+
+<!--    android:process=":newproc"-->
